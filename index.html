@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .foobar {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script>
+        const MyTitle = function(props) {
+            console.log(props)
+            // "style" is a helper for inline css style attr
+            return React.createElement('p', { style: { color: props.color } }, props.title);
+        }
+
+        const MyFirstComponent = function() {
+            return React.createElement('div', { id: 'my-foobar' }, 
+                React.createElement('h1', null, 'Helllllooooo World!'),
+                React.createElement(MyTitle, { title: 'Game of Thrones', color: 'YellowGreen' }),
+                React.createElement(MyTitle, { title: 'Stranger Things', color: 'GreenYellow' }),
+                React.createElement(MyTitle, { title: 'The Fall', color: 'LimeGreen' }),
+                React.createElement(MyTitle, { title: 'The Office', color: 'peru' }),
+            );
+        }
+
+        ReactDOM.render(
+            React.createElement(MyFirstComponent),
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>
