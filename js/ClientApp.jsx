@@ -3,21 +3,28 @@ import { render } from 'react-dom';
 
 const MyTitle = function(props) {
     console.log(props);
-    // "style" is a helper for inline css style attr
-    return React.createElement('p', { style: { color: props.color } }, props.title);
+    const style = { color: props.color };
+
+    return (
+        <div>
+            <p style={style}>{props.title}</p>
+        </div>    
+    );
 }
 
 const MyFirstComponent = function() {
-    return React.createElement('div', { id: 'my-foobar' }, 
-        React.createElement('h1', null, 'Helllllooooo World!'),
-        React.createElement(MyTitle, { title: 'Game of Thrones', color: 'YellowGreen' }),
-        React.createElement(MyTitle, { title: 'Stranger Things', color: 'GreenYellow' }),
-        React.createElement(MyTitle, { title: 'The Fall', color: 'LimeGreen' }),
-        React.createElement(MyTitle, { title: 'The Office', color: 'peru' }),
+    return (
+        <div id="my-foobar">
+            <h1>Helllllooooo World!</h1>
+            <MyTitle title="Game of Thrones" color="YellowGreen" />
+            <MyTitle title="Stranger Things" color="GreenYellow" />
+            <MyTitle title="The Fall" color="LimeGreen" />
+            <MyTitle title="The Office (US)" color="peru" />
+        </div>
     );
 }
 
 render(
-    React.createElement(MyFirstComponent),
+    <MyFirstComponent />,
     document.getElementById('app')
 );
