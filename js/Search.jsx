@@ -6,7 +6,7 @@ const Search = () => {
     console.log(preload);
     return (
         <div className="search">
-            {preload.shows.map((show, index) => <ShowCard key={index} show={show} />)}
+            {preload.shows.map((show) => <ShowCard key={show.imdbID} show={show} />)}
         </div>
     );
 };
