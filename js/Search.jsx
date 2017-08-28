@@ -6,12 +6,12 @@ class Search extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
-            searchTerm: 'foobarbaz',
+            searchTerm: '',
         };
 
-        this.onChangeHandler = this.onChangeHandler.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this); // Fixing "this" problem when calling this.setState()
     }
 
     onChangeHandler(event) {
@@ -31,7 +31,16 @@ class Search extends React.Component {
                     />
                 </header>
                 <div>
-                    {preload.shows.map((show) => <ShowCard key={show.imdbID} show={show} />)}
+                    {preload.shows
+                        .filter((show) => {
+                            if (!this.state.searchTerm) {
+                                return true;
+                            }
+                            return `${show.title} ${show.description}`
+                                .toUpperCase()
+                                .includes(this.state.searchTerm.toUpperCase());
+                        })
+                        .map((show) => <ShowCard key={show.imdbID} show={show} />)}
                 </div>
             </div>
         );    
