@@ -33,9 +33,6 @@ class Search extends React.Component {
                 <div>
                     {preload.shows
                         .filter((show) => {
-                            if (!this.state.searchTerm) {
-                                return true;
-                            }
                             return `${show.title} ${show.description}`
                                 .toUpperCase()
                                 .includes(this.state.searchTerm.toUpperCase());
